@@ -19,4 +19,16 @@ public class Max {
 	public int max(int first, int second) {
 		return first > second ? first : second;
 	}
+	
+	/**
+	 * Метод возвращает максимальное из значений, переданных в параметрах.
+	 * 
+	 * @param first Первое значение.
+	 * @param second Второе значение.
+	 * @param third Третье значение.
+	 * @return Максимальное из трёх значений.
+	 */
+	public int max(int first, int second, int third) {
+		return this.max(this.max(first, second), third);
+	}
 }

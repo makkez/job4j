@@ -14,12 +14,22 @@ import static org.junit.Assert.assertThat;
 public class MaxTest {
 	
 	/**
-	 * Test for max().
+	 * Test for max() with two parameters.
 	 */
 	@Test
 	public void whenFirstLessSecondThenSecond() {
 		Max maxim = new Max();
 		int result = maxim.max(1, 2);
 		assertThat(result, is(2));
+	}
+	
+	/**
+	 * Test for max() with three parameters.
+	 */
+	@Test
+	public void whenFirstAndSecondLessThirdThenThird() {
+		Max maxim = new Max();
+		int result = maxim.max(1, 2, 3);
+		assertThat(result, is(3));
 	}
 }
