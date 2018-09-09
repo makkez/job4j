@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**
+ /**
  * Test for DummyBot.
  *
  * @version 1.0
@@ -42,4 +42,4 @@ public class DummyBotTest {
 			is("Это ставит меня в тупик. Спросите другой вопрос.")
 		);
 	}
-}
+} 
