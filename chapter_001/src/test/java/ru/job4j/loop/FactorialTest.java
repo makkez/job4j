@@ -33,14 +33,4 @@ public class FactorialTest {
 		int result = factorial.calc(0);
 		assertThat(result, is(1));
 	}
-	
-	/**
-	 * Test for calc() when number < 0.
-	 */
-	@Test
-	public void whenCalculateFactorialForMinusFiveThenMinusOne() {
-		Factorial factorial = new Factorial();
-		int result = factorial.calc(-5);
-		assertThat(result, is(-1));
-	}
 }
