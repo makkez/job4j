@@ -49,21 +49,4 @@ public class MatrixCheck {
 		}
 		return result;
 	}
-	
-	/*public static void main(String[] args) {
-		MatrixCheck check = new MatrixCheck();
-		boolean[][] input = {
-			{true, true, true},
-			{false, true, true},
-			{true, false, true}
-		};
-		for (int i = 0; i < input.length; i++) {
-			for (int j = 0; j < input[i].length; j++) {
-				System.out.print(input[i][j] + " ");
-			}
-			System.out.println();
-		}
-		boolean result = check.mono(input);
-		System.out.println(result);
-	}*/
 }

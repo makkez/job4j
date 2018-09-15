@@ -60,7 +60,6 @@ public class MatrixCheckTest {
 		boolean result = check.mono(input);
 		assertThat(result, is(true));
 	}
-	
 	/**
 	 * Test for mono() when matrix is 4x4 and diagonals has different values.
 	 */
