@@ -20,28 +20,10 @@ public class MatrixCheck {
 	public boolean mono(boolean[][] data) {
 		boolean result = true;
 		boolean firstValue = data[0][0];
-		boolean secondValue = data[0][data.length - 1];	
-		result = topDiagonal(data, firstValue);
-		result = bottomDiagonal(data, secondValue);
-		return result;
-	}
-	
-	private boolean topDiagonal(boolean[][] data, boolean checking) {
-		boolean result = true;
-		for (int i = 0; i < data.length; i++) {
-			if (data[i][i] != checking) {
-				result = false;
-				break;
-			}
-		}
-		return result;
-	}
-	
-	private boolean bottomDiagonal(boolean[][] data, boolean checking) {
-		boolean result = true;
+		boolean secondValue = data[0][data.length - 1];
 		int column = data[0].length - 1;
 		for (int i = 0; i < data.length; i++) {
-			if (data[i][column] != checking) {
+			if (data[i][i] != firstValue || data[i][column] != secondValue) {
 				result = false;
 				break;
 			}
