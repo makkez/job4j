@@ -10,30 +10,29 @@ public class SortedArray {
 	
 	/**
 	 * Unites two sorted arrays.
-	 * @param firstArray First sorted array.
-	 * @param secondArray Second sorted array.
+	 * @param first First sorted array.
+	 * @param second Second sorted array.
 	 * @return Sorted array as association first array and second array.
 	 */
-	public int[] uniteArray(int[] firstArray, int[] secondArray) {
-		int[] result = new int[firstArray.length + secondArray.length];
-		//int criterion = Math.min(firstArray.length, secondArray.length);
-		int fLim = 0;
-		int sLim = 0;
+	public int[] uniteArray(int[] first, int[] second) {
+		int[] result = new int[first.length + second.length];
+		int firstLimiter = 0;
+		int secondLimiter = 0;
 		int i = 0;
-		while (fLim < firstArray.length && sLim < secondArray.length) {
-			if (firstArray[fLim] <= secondArray[sLim]) {
-				result[i] = firstArray[fLim];
-				fLim++;
+		while (firstLimiter < first.length && secondLimiter < second.length) {
+			if (first[firstLimiter] <= second[secondLimiter]) {
+				result[i] = first[firstLimiter];
+				firstLimiter++;
 			} else {
-				result[i] = secondArray[sLim];
-				sLim++;
+				result[i] = second[secondLimiter];
+				secondLimiter++;
 			}
 			i++;
 		}
-		if (firstArray[firstArray.length - 1] > secondArray[secondArray.length - 1]) {
-			System.arraycopy(firstArray, fLim, result, i, firstArray.length - fLim);
+		if (first[first.length - 1] > second[second.length - 1]) {
+			System.arraycopy(first, firstLimiter, result, i, first.length - firstLimiter);
 		} else {
-			System.arraycopy(secondArray, sLim, result, i, secondArray.length - sLim);
+			System.arraycopy(second, secondLimiter, result, i, second.length - secondLimiter);
 		}
 		return result;
 	}

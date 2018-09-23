@@ -19,11 +19,9 @@ public class MatrixCheck {
 	 */
 	public boolean mono(boolean[][] data) {
 		boolean result = true;
-		boolean firstValue = data[0][0];
-		boolean secondValue = data[0][data.length - 1];
 		int column = data[0].length - 1;
 		for (int i = 0; i < data.length; i++) {
-			if (data[i][i] != firstValue || data[i][column] != secondValue) {
+			if (data[i][i] != data[0][0] || data[i][column] != data[0][data.length - 1]) {
 				result = false;
 				break;
 			}

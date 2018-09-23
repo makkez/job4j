@@ -2,7 +2,7 @@ package ru.job4j.array;
 
 /**
  * Обёртка над строкой.
- * 
+ *
  * @author makkex
  * @version 1.0
  * @since 14.09.2018

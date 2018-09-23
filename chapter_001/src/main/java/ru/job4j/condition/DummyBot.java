@@ -17,13 +17,11 @@ package ru.job4j.condition;
 	  */
 	  public String answer(String question) {
 		  String response = "Это ставит меня в тупик. Спросите другой вопрос.";
-		  
 		  if ("Привет, Бот.".equals(question)) {
 			  response = "Привет, умник!";
 		  } else if ("Пока.".equals(question)) {
 			  response = "До скорой встречи.";
 		  }
-		  
 		  return response;
 	  }
  }
