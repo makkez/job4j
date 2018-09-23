@@ -21,13 +21,10 @@ public class SortedArray {
 		int i = 0;
 		while (firstLimiter < first.length && secondLimiter < second.length) {
 			if (first[firstLimiter] <= second[secondLimiter]) {
-				result[i] = first[firstLimiter];
-				firstLimiter++;
+				result[i++] = first[firstLimiter++];
 			} else {
-				result[i] = second[secondLimiter];
-				secondLimiter++;
+				result[i++] = second[secondLimiter++];
 			}
-			i++;
 		}
 		if (first[first.length - 1] > second[second.length - 1]) {
 			System.arraycopy(first, firstLimiter, result, i, first.length - firstLimiter);
