@@ -1,5 +1,7 @@
 package ru.job4j.tictactoe;
 
+import java.util.function.Predicate;
+
 /**
  * Describe logic of game.
  * @author makkez
@@ -23,23 +25,7 @@ public class Logic3T {
      * @return True or false.
      */
     public boolean isWinnerX() {
-        boolean result = false;
-        boolean check;
-        Figure3T[][] winLines = getWinningLines(this);
-        for (Figure3T[] figures : winLines) {
-            check = true;
-            for (Figure3T figure : figures) {
-                if (!figure.hasMarkX()) {
-                    check = false;
-                    break;
-                }
-            }
-            if (check) {
-                result = true;
-                break;
-            }
-        }
-        return result;
+        return this.checkWinner(Figure3T::hasMarkX);
     }
 
     /**
@@ -47,23 +33,7 @@ public class Logic3T {
      * @return True or false.
      */
     public boolean isWinnerO() {
-        boolean result = false;
-        boolean check;
-        Figure3T[][] winLines = getWinningLines(this);
-        for (Figure3T[] figures : winLines) {
-            check = true;
-            for (Figure3T figure : figures) {
-                if (!figure.hasMarkO()) {
-                    check = false;
-                    break;
-                }
-            }
-            if (check) {
-                result = true;
-                break;
-            }
-        }
-        return result;
+        return this.checkWinner(Figure3T::hasMarkO);
     }
 
     /**
@@ -72,29 +42,59 @@ public class Logic3T {
      */
     public boolean hasGap() {
         boolean result = false;
-        outer:
+        boolean flag = false;
         for (Figure3T[] figures : this.table) {
             for (Figure3T figure : figures) {
                 if (!figure.hasMarkX() && !figure.hasMarkO()) {
                     result = true;
-                    break outer;
+                    flag = true;
+                    break;
                 }
+            }
+            if (flag) {
+                break;
             }
         }
         return result;
     }
 
-    private static Figure3T[][] getWinningLines(Logic3T logic) {
-        Figure3T[][] result = {
-                {logic.table[0][0], logic.table[1][0], logic.table[2][0]},
-                {logic.table[0][1], logic.table[1][1], logic.table[2][1]},
-                {logic.table[0][2], logic.table[1][2], logic.table[2][2]},
-                {logic.table[0][0], logic.table[0][1], logic.table[0][2]},
-                {logic.table[1][0], logic.table[1][1], logic.table[1][2]},
-                {logic.table[2][0], logic.table[2][1], logic.table[2][2]},
-                {logic.table[0][0], logic.table[1][1], logic.table[2][2]},
-                {logic.table[2][0], logic.table[1][1], logic.table[0][2]}
-        };
+    /**
+     * Checking sequence for tic tac toe winning combination.
+     * @param predicate Template for reference.
+     * @param startX Coordinate X of start cell.
+     * @param startY Coordinate Y of start cell.
+     * @param deltaX Offset by coordinate X.
+     * @param deltaY Offset by coordinate Y.
+     * @return True or false.
+     */
+    private boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
+        boolean result = true;
+        for (int index = 0; index != this.table.length; index++) {
+            Figure3T cell = this.table[startX][startY];
+            startX += deltaX;
+            startY += deltaY;
+            if (!predicate.test(cell)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    private boolean checkWinner(Predicate<Figure3T> predicate) {
+        boolean result = false;
+        if (this.fillBy(predicate, 0, 0, 1, 1) |
+                this.fillBy(predicate, this.table.length - 1, 0, -1, 1)) {
+            result = true;
+        } else {
+            for (int index = 0; index < this.table.length; index++) {
+                if (this.fillBy(predicate, index, 0, 0, 1) |
+                        this.fillBy(predicate, 0, index, 1, 0)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
         return result;
     }
 }
