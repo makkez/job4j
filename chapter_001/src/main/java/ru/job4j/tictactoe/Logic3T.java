@@ -42,16 +42,13 @@ public class Logic3T {
      */
     public boolean hasGap() {
         boolean result = false;
-        boolean flag = false;
         for (Figure3T[] figures : this.table) {
             for (Figure3T figure : figures) {
                 if (!figure.hasMarkX() && !figure.hasMarkO()) {
                     result = true;
-                    flag = true;
-                    break;
                 }
             }
-            if (flag) {
+            if (result) {
                 break;
             }
         }
@@ -83,18 +80,14 @@ public class Logic3T {
 
     private boolean checkWinner(Predicate<Figure3T> predicate) {
         boolean result = false;
-        if (this.fillBy(predicate, 0, 0, 1, 1) |
-                this.fillBy(predicate, this.table.length - 1, 0, -1, 1)) {
-            result = true;
-        } else {
-            for (int index = 0; index < this.table.length; index++) {
-                if (this.fillBy(predicate, index, 0, 0, 1) |
-                        this.fillBy(predicate, 0, index, 1, 0)) {
-                    result = true;
-                    break;
-                }
+        for (int index = 0; index < this.table.length; index++) {
+            if (this.fillBy(predicate, index, 0, 0, 1) ||
+                    this.fillBy(predicate, 0, index, 1, 0)) {
+                result = true;
+                break;
             }
         }
-        return result;
+        return result || this.fillBy(predicate, 0, 0, 1, 1) ||
+                this.fillBy(predicate, this.table.length - 1, 0, -1, 1);
     }
 }
