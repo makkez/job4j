@@ -81,13 +81,13 @@ public class Logic3T {
     private boolean checkWinner(Predicate<Figure3T> predicate) {
         boolean result = false;
         for (int index = 0; index < this.table.length; index++) {
-            if (this.fillBy(predicate, index, 0, 0, 1) ||
-                    this.fillBy(predicate, 0, index, 1, 0)) {
+            if (this.fillBy(predicate, index, 0, 0, 1) 
+					|| this.fillBy(predicate, 0, index, 1, 0)) {
                 result = true;
                 break;
             }
         }
-        return result || this.fillBy(predicate, 0, 0, 1, 1) ||
-                this.fillBy(predicate, this.table.length - 1, 0, -1, 1);
+        return result || this.fillBy(predicate, 0, 0, 1, 1) 
+				|| this.fillBy(predicate, this.table.length - 1, 0, -1, 1);
     }
 }
