@@ -74,14 +74,28 @@ public class Tracker {
 	 * @return All items when the item's name equals specified name.
 	 */
 	public Item[] findByName(String key) {
-		ArrayList<Item> resultList = new ArrayList<Item>();
+		Item[] result = new Item[0];
 		for (int index = 0; index < this.position; index++) {
 			if (this.items[index].getName().equals(key)) {
-				resultList.add(this.items[index]);
+				result = this.addToArray(result, this.items[index]);
 			}
 		}
-		Item[] result = new Item[resultList.size()];
-		return resultList.toArray(result);
+		return result;
+	}
+	
+	/**
+	 * The addToArray() method adds the specified item to the specified array.
+	 * @param array The specified array with items.
+	 * @param item The specified item which for to add to the array.
+	 * @return The array with new item.
+	 */
+	private Item[] addToArray(Item[] array, Item item) {
+		Item[] result = new Item[array.length + 1];
+		for (int index = 0; index < array.length; index++) {
+			result[index] = array[index];
+		}
+		result[array.length] = item;
+		return result;
 	}
 	
 	/**
@@ -109,6 +123,7 @@ public class Tracker {
 	public void replace(String id, Item item) {
 		for (int index = 0; index < this.position; index++) {
 			if (this.items[index].getId().equals(id)) {
+				item.setId(id);
 				this.items[index] = item;
 				break;
 			}
