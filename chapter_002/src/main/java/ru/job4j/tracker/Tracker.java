@@ -74,28 +74,15 @@ public class Tracker {
 	 * @return All items when the item's name equals specified name.
 	 */
 	public Item[] findByName(String key) {
-		Item[] result = new Item[0];
+		Item[] result = new Item[this.position];
+		int limiter = 0;
 		for (int index = 0; index < this.position; index++) {
 			if (this.items[index].getName().equals(key)) {
-				result = this.addToArray(result, this.items[index]);
+				result[limiter] = this.items[index];
+				limiter++;
 			}
 		}
-		return result;
-	}
-	
-	/**
-	 * The addToArray() method adds the specified item to the specified array.
-	 * @param array The specified array with items.
-	 * @param item The specified item which for to add to the array.
-	 * @return The array with new item.
-	 */
-	private Item[] addToArray(Item[] array, Item item) {
-		Item[] result = new Item[array.length + 1];
-		for (int index = 0; index < array.length; index++) {
-			result[index] = array[index];
-		}
-		result[array.length] = item;
-		return result;
+		return Arrays.copyOf(result, limiter);
 	}
 	
 	/**
