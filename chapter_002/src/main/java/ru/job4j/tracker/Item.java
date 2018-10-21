@@ -48,6 +48,16 @@ public class Item {
 	}
 	
 	/**
+	 * The constructor with the name and the description parameters.
+	 * @param name The name of item.
+	 * @param description The description of item.
+	 */
+	public Item(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+	
+	/**
 	 * The constructor with the name, the description and the creation date parameter.
 	 * @param name The name of item.
 	 * @param description The description of item.
@@ -129,5 +139,34 @@ public class Item {
 	 */
 	public String[] getComments() {
 		return this.comments;
+	}
+	
+	/**
+	 * The toString() method returns the data of item as the string representation.
+	 * This method is overrided by the Object class.
+	 * @return The data of item as the string representation.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		if (this.id != null) {
+			result.append(String.format("ID: %10s\n", this.id));
+		}
+		if (this.name != null) {
+			result.append(String.format("Name: %10s\n", this.name));
+		}
+		if (this.created != 0L) {
+			result.append(String.format("Creation date: %10d\n", this.created));
+		}
+		if (this.description != null) {
+			result.append(String.format("Description: %10s\n", this.description));
+		}
+		if (this.comments != null) {
+			result.append("Comments:\n");
+			for (String comment : this.comments) {
+				result.append(String.format("\t%s \n", comment));
+			}
+		}
+		return result.toString();
 	}
 }

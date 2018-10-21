@@ -77,7 +77,7 @@ public class Tracker {
 		Item[] result = new Item[this.position];
 		int limiter = 0;
 		for (int index = 0; index < this.position; index++) {
-			if (this.items[index].getName().equals(key)) {
+			if (this.items[index].getName().equalsIgnoreCase(key)) {
 				result[limiter] = this.items[index];
 				limiter++;
 			}
