@@ -160,7 +160,12 @@ public class StartUI {
 		String name = this.input.ask("Enter the name of item: ");
 		String description = this.input.ask("Enter the description of item: ");
 		Item item = new Item(name, description);
-		this.tracker.replace(id, item);
+		boolean result = this.tracker.replace(id, item);
+		if (result) {
+			System.out.println("The editing is successful!");
+		} else {
+			System.out.println("The editing isn't successful!");
+		}
 		System.out.println("----- EDITING IS FINISHED -----\n");
 	}
 	
@@ -170,7 +175,12 @@ public class StartUI {
 	private void deleteItem() {
 		System.out.println("\n----- DELETING THE ITEM -----");
 		String id = this.input.ask("Enter the ID of item who needs to be deleted: ");
-		this.tracker.delete(id);
+		boolean result = this.tracker.delete(id);
+		if (result) {
+			System.out.println("The deleting is successful!");
+		} else {
+			System.out.println("The deleting isn't successful!");
+		}
 		System.out.println("----- DELETING IS FINISHED -----\n");
 	}
 	

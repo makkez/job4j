@@ -47,15 +47,21 @@ public class Tracker {
 	/**
 	 * Method deletes item from tracker by ID.
 	 * @param id ID of item to be delete.
+	 * @return The result of deleting 
+	 * (true - if the deleting is successful, 
+	 * false - if the deleting isn't successful).
 	 */
-	public void delete(String id) {
+	public boolean delete(String id) {
+		boolean result = false;
 		for (int index = 0; index < this.position; index++) {
 			if (this.items[index].getId().equals(id)) {
 				this.position--;
 				System.arraycopy(this.items, index + 1, this.items, index, this.position - index);
+				result = true;
 				break;
 			}
 		}
+		return result;
 	}
 	
 	/**
@@ -106,14 +112,20 @@ public class Tracker {
 	 * Searching the item in the tracker is by specified identification value.
 	 * @param id The identification value.
 	 * @param item The item for replace.
+	 * @return The result of replacing 
+	 * (true - if the replacing is successful, 
+	 * false - if the replacing isn't successful).
 	 */
-	public void replace(String id, Item item) {
+	public boolean replace(String id, Item item) {
+		boolean result = false;
 		for (int index = 0; index < this.position; index++) {
 			if (this.items[index].getId().equals(id)) {
 				item.setId(id);
 				this.items[index] = item;
+				result = true;
 				break;
 			}
 		}
+		return result;
 	}
 }
