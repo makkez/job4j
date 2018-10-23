@@ -89,7 +89,7 @@ public class StartUI {
 	/**
 	 * The init() method executes the main cycle of program.
 	 */
-	private void init() {
+	public void init() {
 		boolean exit = false;
 		while (!exit) {
 			this.showMenu();
