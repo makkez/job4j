@@ -20,9 +20,12 @@ public class SquareTest {
 	public void whenDrawSquare() {
 		Square square = new Square();
 		StringBuilder expected = new StringBuilder()
-				.append("+++++++\n")
-				.append("+++++++\n")
-				.append("+++++++\n")
+				.append("+++++++")
+				.append(System.lineSeparator())
+				.append("+++++++")
+				.append(System.lineSeparator())
+				.append("+++++++")
+				.append(System.lineSeparator())
 				.append("+++++++");
 		assertThat(square.draw(), is(expected.toString()));
 	}

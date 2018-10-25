@@ -15,11 +15,14 @@ public class Triangle implements Shape {
 	 */
 	@Override
 	public String draw() {
-		StringBuilder picture = new StringBuilder();
-		picture.append("   +\n");
-		picture.append("  +++\n");
-		picture.append(" +++++\n");
-		picture.append("+++++++");
+		StringBuilder picture = new StringBuilder()
+				.append("   +")
+				.append(System.lineSeparator())
+				.append("  +++")
+				.append(System.lineSeparator())
+				.append(" +++++")
+				.append(System.lineSeparator())
+				.append("+++++++");
 		return picture.toString();
 	}
 }

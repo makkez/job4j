@@ -20,9 +20,12 @@ public class TriangleTest {
 	public void whenDrawTriangle() {
 		Triangle triangle = new Triangle();
 		StringBuilder expected = new StringBuilder()
-				.append("   +\n")
-				.append("  +++\n")
-				.append(" +++++\n")
+				.append("   +")
+				.append(System.lineSeparator())
+				.append("  +++")
+				.append(System.lineSeparator())
+				.append(" +++++")
+				.append(System.lineSeparator())
 				.append("+++++++");
 		assertThat(triangle.draw(), is(expected.toString()));
 	}
