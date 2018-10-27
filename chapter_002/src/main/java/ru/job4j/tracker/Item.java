@@ -150,21 +150,27 @@ public class Item {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		if (this.id != null) {
-			result.append(String.format("ID: %10s\n", this.id));
+			result.append(String.format("ID: %10s", this.id));
+			result.append(System.lineSeparator());
 		}
 		if (this.name != null) {
-			result.append(String.format("Name: %10s\n", this.name));
+			result.append(String.format("Name: %10s", this.name));
+			result.append(System.lineSeparator());
 		}
 		if (this.created != 0L) {
-			result.append(String.format("Creation date: %10d\n", this.created));
+			result.append(String.format("Creation date: %10d", this.created));
+			result.append(System.lineSeparator());
 		}
 		if (this.description != null) {
-			result.append(String.format("Description: %10s\n", this.description));
+			result.append(String.format("Description: %10s", this.description));
+			result.append(System.lineSeparator());
 		}
 		if (this.comments != null) {
-			result.append("Comments:\n");
+			result.append("Comments:");
+			result.append(System.lineSeparator());
 			for (String comment : this.comments) {
-				result.append(String.format("\t%s \n", comment));
+				result.append(String.format("\t%s", comment));
+				result.append(System.lineSeparator());
 			}
 		}
 		return result.toString();
