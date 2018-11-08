@@ -49,7 +49,7 @@ public class StartUITest {
 	@Test
 	public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
 		Tracker tracker = new Tracker();
-		Input input = new StubInput(new String[] {"0", "test name", "desc", "6"});
+		Input input = new StubInput(new String[] {"0", "test name", "desc", "y"});
 		new StartUI(input, tracker).init();
 		assertThat(tracker.findAll()[0].getName(), is("test name"));
 	}
@@ -61,7 +61,7 @@ public class StartUITest {
 	public void whenUpdateThenTrackerHasUpdateValue() {
 		Tracker tracker = new Tracker();
 		Item item = tracker.add(new Item("test name", "dasc"));
-		Input input = new StubInput(new String[] {"2", item.getId(), "test replace", "item is changed", "6"});
+		Input input = new StubInput(new String[] {"2", item.getId(), "test replace", "item is changed", "y"});
 		new StartUI(input, tracker).init();
 		assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
 	}
@@ -73,7 +73,7 @@ public class StartUITest {
 	public void whenDeleteThenTrackerHasNotItem() {
 		Tracker tracker = new Tracker();
 		Item item = tracker.add(new Item("test name", "dasc"));
-		Input input = new StubInput(new String[] {"3", item.getId(), "6"});
+		Input input = new StubInput(new String[] {"3", item.getId(), "y"});
 		new StartUI(input, tracker).init();
 		assertThat(tracker.findAll().length, is(0));
 	}
@@ -84,8 +84,6 @@ public class StartUITest {
 	 */
 	private String getMenu() {
 		StringBuilder result = new StringBuilder()
-				.append("MAIN MENU:")
-				.append(System.lineSeparator())
 				.append("0. Add new item")
 				.append(System.lineSeparator())
 				.append("1. Show all items")
@@ -97,10 +95,7 @@ public class StartUITest {
 				.append("4. Find item by ID")
 				.append(System.lineSeparator())
 				.append("5. Find items by name")
-				.append(System.lineSeparator())
-				.append("6. Exit program")
-				.append(System.lineSeparator())
-				.append("User's select: ");
+				.append(System.lineSeparator());
 		return result.toString();
 	}
 	
@@ -112,7 +107,7 @@ public class StartUITest {
 		Tracker tracker = new Tracker();
 		Item item1 = tracker.add(new Item("Test name item 1", "Description 1"));
 		Item item2 = tracker.add(new Item("Test name item 2", "Description 2"));
-		Input input = new StubInput(new String[] {"1", "6"});
+		Input input = new StubInput(new String[] {"1", "y"});
 		StringBuilder expected = new StringBuilder()
 				.append(this.getMenu())
 				.append("\n----- SHOWING ALL ITEMS FROM THE TRACKER -----")
@@ -132,8 +127,7 @@ public class StartUITest {
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
 				.append("----- ALL ITEMS ARE SHOWN -----\n")
-				.append(System.lineSeparator())
-				.append(this.getMenu());
+				.append(System.lineSeparator());
 		new StartUI(input, tracker).init();
 		assertThat(new String(out.toByteArray()), is(expected.toString()));
 	}
@@ -144,14 +138,13 @@ public class StartUITest {
 	@Test
 	public void whenShowAllAndTrackerHasNotItemsThenItemsIsNotPrinted() {
 		Tracker tracker = new Tracker();
-		Input input = new StubInput(new String[] {"1", "6"});
+		Input input = new StubInput(new String[] {"1", "y"});
 		StringBuilder expected = new StringBuilder()
 				.append(this.getMenu())
 				.append("\n----- SHOWING ALL ITEMS FROM THE TRACKER -----")
 				.append(System.lineSeparator())
 				.append("The tracker is empty!\n")
-				.append(System.lineSeparator())
-				.append(this.getMenu());
+				.append(System.lineSeparator());
 		new StartUI(input, tracker).init();
 		assertThat(new String(out.toByteArray()), is(expected.toString()));
 	}
@@ -165,14 +158,13 @@ public class StartUITest {
 		Tracker tracker = new Tracker();
 		tracker.add(new Item("Test name item 1", "Description 1"));
 		tracker.add(new Item("Test name item 2", "Description 2"));
-		Input input = new StubInput(new String[] {"4", "111", "6"});
+		Input input = new StubInput(new String[] {"4", "111", "y"});
 		StringBuilder expected = new StringBuilder()
 				.append(this.getMenu())
 				.append("\n----- FINDING THE ITEM BY ID -----")
 				.append(System.lineSeparator())
 				.append("The item with specified id absents in the tracker!\n")
-				.append(System.lineSeparator())
-				.append(this.getMenu());
+				.append(System.lineSeparator());
 		new StartUI(input, tracker).init();
 		assertThat(new String(out.toByteArray()), is(expected.toString()));
 	}
@@ -187,7 +179,7 @@ public class StartUITest {
 		tracker.add(new Item("Test name item 1", "Description 1"));
 		Item item = tracker.add(new Item("Test name item 2", "Description 2"));
 		tracker.add(new Item("Test name item 3", "Description 3"));
-		Input input = new StubInput(new String[] {"4", item.getId(), "6"});
+		Input input = new StubInput(new String[] {"4", item.getId(), "y"});
 		StringBuilder expected = new StringBuilder()
 				.append(this.getMenu())
 				.append("\n----- FINDING THE ITEM BY ID -----")
@@ -200,8 +192,7 @@ public class StartUITest {
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
 				.append("----- THE FOUND ITEM IS SHOWN -----\n")
-				.append(System.lineSeparator())
-				.append(this.getMenu());
+				.append(System.lineSeparator());
 		new StartUI(input, tracker).init();
 		assertThat(new String(out.toByteArray()), is(expected.toString()));
 	}
@@ -216,14 +207,13 @@ public class StartUITest {
 		tracker.add(new Item("Test name item 1", "Description 1"));
 		tracker.add(new Item("Test name item 2", "Description 2"));
 		tracker.add(new Item("Test name item 3", "Description 3"));
-		Input input = new StubInput(new String[] {"5", "Item with another name", "6"});
+		Input input = new StubInput(new String[] {"5", "Item with another name", "y"});
 		StringBuilder expected = new StringBuilder()
 				.append(this.getMenu())
 				.append("\n----- FINDING ITEMS BY NAME -----")
 				.append(System.lineSeparator())
 				.append("Items with specified name absent in the tracker!\n")
-				.append(System.lineSeparator())
-				.append(this.getMenu());
+				.append(System.lineSeparator());
 		new StartUI(input, tracker).init();
 		assertThat(new String(out.toByteArray()), is(expected.toString()));
 	}
@@ -239,7 +229,7 @@ public class StartUITest {
 		Item item2 = tracker.add(new Item("Test required name item", "Description 4"));
 		tracker.add(new Item("Test name item 1", "Description 1"));
 		tracker.add(new Item("Test name item 3", "Description 3"));
-		Input input = new StubInput(new String[] {"5", item1.getName(), "6"});
+		Input input = new StubInput(new String[] {"5", item1.getName(), "y"});
 		StringBuilder expected = new StringBuilder()
 				.append(this.getMenu())
 				.append("\n----- FINDING ITEMS BY NAME -----")
@@ -259,8 +249,7 @@ public class StartUITest {
 				.append(System.lineSeparator())
 				.append(System.lineSeparator())
 				.append("----- FOUND ITEMS ARE SHOWN -----\n")
-				.append(System.lineSeparator())
-				.append(this.getMenu());
+				.append(System.lineSeparator());
 		new StartUI(input, tracker).init();
 		assertThat(new String(out.toByteArray()), is(expected.toString()));
 	}
