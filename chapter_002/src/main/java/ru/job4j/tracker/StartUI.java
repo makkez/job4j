@@ -11,6 +11,8 @@ import java.util.ArrayList;
  */
 public class StartUI {
 	
+	private int[] ranges = {0, 1, 2, 3, 4, 5};
+	
 	/**
 	 * An object of the Input type for entering data by user.
 	 */
@@ -36,7 +38,7 @@ public class StartUI {
 	 * @param args Arguments.
 	 */
 	public static void main(String[] args) {
-		new StartUI(new ConsoleInput(), new Tracker()).init();
+		new StartUI(new ValidateInput(), new Tracker()).init();
 	}
 	
 	/**
@@ -51,7 +53,7 @@ public class StartUI {
 		}
 		do {
 			menu.show();
-			menu.select(Integer.valueOf(input.ask("User's select: ")));
+			menu.select(input.ask("User's select: ", this.ranges));
 		} while (!"y".equals(this.input.ask("Exit? (y): ")));
 	}
 }
