@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class StartUI {
 	
-	private int[] ranges = {0, 1, 2, 3, 4, 5};
+	private int[] ranges = MenuTracker.getMenuItems();
 	
 	/**
 	 * An object of the Input type for entering data by user.

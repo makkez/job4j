@@ -28,12 +28,24 @@ public class StubInput implements Input {
 	
 	/**
 	 * The ask() method emulations work of user.
-	 * This metho form the Input interface.
+	 * This method form the Input interface.
 	 * @param question This parameter is not used in the ask() method of the StubInput class.
 	 * @return The next answer.
 	 */
 	@Override
 	public String ask(String question) {
 		return this.answers[this.position++];
+	}
+	
+	/**
+	 * The ask() method emulations work of user.
+	 * This method form the Input interface.
+	 * @param question The question to user.
+	 * @param range The range of value.
+	 * @return The response from user.
+	 */
+	@Override
+	public int ask(String question, int[] range) {
+		return -1;
 	}
 }

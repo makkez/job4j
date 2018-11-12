@@ -153,6 +153,15 @@ public class MenuTracker {
 	}
 	
 	/**
+	 * The getMenuItems() method provides items of the menu as array.
+	 * @return Items of the menu.
+	 */
+	public static int[] getMenuItems() {
+		int[] result = {ADD, SHOW, EDIT, DELETE, FIND_ID, FIND_NAME};
+		return result;
+	}
+	
+	/**
 	 * A method for getting number of actions.
 	 * @return The number of actions.
 	 */
