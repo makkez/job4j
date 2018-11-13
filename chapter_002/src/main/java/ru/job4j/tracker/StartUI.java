@@ -11,8 +11,6 @@ import java.util.ArrayList;
  */
 public class StartUI {
 	
-	private int[] ranges = MenuTracker.getMenuItems();
-	
 	/**
 	 * An object of the Input type for entering data by user.
 	 */
@@ -46,14 +44,10 @@ public class StartUI {
 	 */
 	public void init() {
 		MenuTracker menu = new MenuTracker(this.input, this.tracker);
-		List<Integer> range = new ArrayList<>();
-		menu.fillActions();
-		for (int i = 0; i < menu.getActionLength(); i++) {
-			range.add(i);
-		}
+		int[] ranges = menu.fillRanges();
 		do {
 			menu.show();
-			menu.select(input.ask("User's select: ", this.ranges));
+			menu.select(input.ask("User's select: ", ranges));
 		} while (!"y".equals(this.input.ask("Exit? (y): ")));
 	}
 }

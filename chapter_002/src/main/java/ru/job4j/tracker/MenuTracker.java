@@ -153,15 +153,6 @@ public class MenuTracker {
 	}
 	
 	/**
-	 * The getMenuItems() method provides items of the menu as array.
-	 * @return Items of the menu.
-	 */
-	public static int[] getMenuItems() {
-		int[] result = {ADD, SHOW, EDIT, DELETE, FIND_ID, FIND_NAME};
-		return result;
-	}
-	
-	/**
 	 * A method for getting number of actions.
 	 * @return The number of actions.
 	 */
@@ -179,6 +170,19 @@ public class MenuTracker {
 		this.actions.add(this.new DeleteItem());
 		this.actions.add(new MenuTracker.FindByIdItem());
 		this.actions.add(new FindByNameItems());
+	}
+	
+	/**
+	 * The fillRanges() method provides items of the menu as array.
+	 * @return Items of the menu.
+	 */
+	public int[] fillRanges() {
+		this.fillActions();
+		int[] result = new int[this.actions.size()];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = i;
+		}
+		return result;
 	}
 	
 	/**
