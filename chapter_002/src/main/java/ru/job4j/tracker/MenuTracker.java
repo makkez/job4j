@@ -8,14 +8,15 @@ import java.util.ArrayList;
  * The EditItem class implements the UserAction interface 
  * and describes the edit action.
  */
-class EditItem implements UserAction {
+class EditItem extends BaseAction {
 	
 	/**
-	 * The key() method for returning the key of the edit-option.
-	 * @return The key of edit-option.
+	 * The constructor with two parameters.
+	 * @param key The key of the edit item action.
+	 * @param name The name of the edit item action.
 	 */
-	public int key() {
-		return MenuTracker.EDIT;
+	public EditItem(int key, String name) {
+		super(key, name);
 	}
 	
 	/**
@@ -37,14 +38,6 @@ class EditItem implements UserAction {
 		}
 		System.out.println("----- EDITING IS FINISHED -----\n");
 	}
-	
-	/**
-	 * The method info() for returning of the information about the item of menu.
-	 * @return The string of menu.
-	 */
-	public String info() {
-		return String.format("%s. %s", this.key(), "Edit item");
-	}
 }
 
 /**
@@ -52,14 +45,15 @@ class EditItem implements UserAction {
  * The FindByNameItems class implements the UserAction interface 
  * and describes the show items found by name action.
  */
-class FindByNameItems implements UserAction {
+class FindByNameItems extends BaseAction {
 	
 	/**
-	 * The key() method for returning the key of the find items by name option.
-	 * @return The key of the find items by name option.
+	 * The constructor with two parameters.
+	 * @param key The key of the find items by name action.
+	 * @param name The name of the find items by name action.
 	 */
-	public int key() {
-		return MenuTracker.FIND_NAME;
+	public FindByNameItems(int key, String name) {
+		super(key, name);
 	}
 	
 	/**
@@ -79,14 +73,6 @@ class FindByNameItems implements UserAction {
 			}
 			System.out.println("----- FOUND ITEMS ARE SHOWN -----\n");
 		}
-	}
-	
-	/**
-	 * The method info() for returning of the information about the item of menu.
-	 * @return The string of menu.
-	 */
-	public String info() {
-		return String.format("%s. %s", this.key(), "Find items by name");
 	}
 }
 
@@ -164,12 +150,12 @@ public class MenuTracker {
 	 * This method does filling list of actions.
 	 */
 	public void fillActions() {
-		this.actions.add(this.new AddItem());
-		this.actions.add(new MenuTracker.ShowItems());
-		this.actions.add(new EditItem());
-		this.actions.add(this.new DeleteItem());
-		this.actions.add(new MenuTracker.FindByIdItem());
-		this.actions.add(new FindByNameItems());
+		this.actions.add(this.new AddItem(ADD, "Add new item"));
+		this.actions.add(new MenuTracker.ShowItems(SHOW, "Show all items"));
+		this.actions.add(new EditItem(EDIT, "Edit item"));
+		this.actions.add(this.new DeleteItem(DELETE, "Delete item"));
+		this.actions.add(new MenuTracker.FindByIdItem(FIND_ID, "Find item by ID"));
+		this.actions.add(new FindByNameItems(FIND_NAME, "Find items by name"));
 	}
 	
 	/**
@@ -208,14 +194,15 @@ public class MenuTracker {
 	 * The AddItem class is inner class.
 	 * The AddItem class implements the UserAction interface and describes the add action.
 	 */
-	private class AddItem implements UserAction {
+	private class AddItem extends BaseAction {
 		
 		/**
-		 * The key() method for returning the key of the add-option.
-		 * @return The key of add-option.
+		 * The constructor with two parameters.
+		 * @param key The key of the add-action.
+		 * @param name The name of the add-action.
 		 */
-		public int key() {
-			return MenuTracker.ADD;
+		public AddItem(int key, String name) {
+			super(key, name);
 		}
 		
 		/**
@@ -232,14 +219,6 @@ public class MenuTracker {
 			System.out.println("New item with ID: " + item.getId() + " is added!");
 			System.out.println("----- ADDING IS FINISHED -----\n");
 		}
-		
-		/**
-		 * The method info() for returning of the information about the item of menu.
-		 * @return The string of menu.
-		 */
-		public String info() {
-			return String.format("%s. %s", this.key(), "Add new item");
-		}
 	}
 	
 	/**
@@ -247,14 +226,15 @@ public class MenuTracker {
 	 * The DeleteItem class implements the UserAction interface 
 	 * and describes the delete action.
 	 */
-	private class DeleteItem implements UserAction {
+	private class DeleteItem extends BaseAction {
 		
 		/**
-		 * The key() method for returning the key of the delete-option.
-		 * @return The key of delete-option.
+		 * The constructor with two parameters.
+		 * @param key The key of the delete-action.
+		 * @param name The name of the delete-action.
 		 */
-		public int key() {
-			return MenuTracker.DELETE;
+		public DeleteItem(int key, String name) {
+			super(key, name);
 		}
 		
 		/**
@@ -273,14 +253,6 @@ public class MenuTracker {
 			}
 			System.out.println("----- DELETING IS FINISHED -----\n");
 		}
-		
-		/**
-		 * The method info() for returning of the information about the item of menu.
-		 * @return The string of menu.
-		 */
-		public String info() {
-			return String.format("%s. %s", this.key(), "Delete item");
-		}
 	}
 	
 	/**
@@ -288,14 +260,15 @@ public class MenuTracker {
 	 * The ShowItems class implements the UserAction interface 
 	 * and describes the show all items action.
 	 */
-	private static class ShowItems implements UserAction {
+	private static class ShowItems extends BaseAction {
 		
 		/**
-		 * The key() method for returning the key of the show all items option.
-		 * @return The key of the show all items option.
+		 * The constructor with two parameters.
+		 * @param key The key of the show items action.
+		 * @param name The name of the show items action.
 		 */
-		public int key() {
-			return MenuTracker.SHOW;
+		public ShowItems(int key, String name) {
+			super(key, name);
 		}
 		
 		/**
@@ -315,14 +288,6 @@ public class MenuTracker {
 				System.out.println("----- ALL ITEMS ARE SHOWN -----\n");
 			}
 		}
-		
-		/**
-		 * The method info() for returning of the information about the item of menu.
-		 * @return The string of menu.
-		 */
-		public String info() {
-			return String.format("%s. %s", this.key(), "Show all items");
-		}
 	}
 	
 	/**
@@ -330,14 +295,15 @@ public class MenuTracker {
 	 * The FindByIdItem class implements the UserAction interface 
 	 * and describes the show item found by id action.
 	 */
-	private static class FindByIdItem implements UserAction {
+	private static class FindByIdItem extends BaseAction {
 		
 		/**
-		 * The key() method for returning the key of the find item by id option.
-		 * @return The key of the find item by id option.
+		 * The constructor with two parameters.
+		 * @param key The key of the find item by id action.
+		 * @param name The name of the find item by id action.
 		 */
-		public int key() {
-			return MenuTracker.FIND_ID;
+		public FindByIdItem(int key, String name) {
+			super(key, name);
 		}
 		
 		/**
@@ -355,14 +321,6 @@ public class MenuTracker {
 				System.out.println(result);
 				System.out.println("----- THE FOUND ITEM IS SHOWN -----\n");
 			}
-		}
-		
-		/**
-		 * The method info() for returning of the information about the item of menu.
-		 * @return The string of menu.
-		 */
-		public String info() {
-			return String.format("%s. %s", this.key(), "Find item by ID");
 		}
 	}
 }
